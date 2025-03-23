@@ -10,12 +10,13 @@ const port = 3000;
 app.set('view engine', 'ejs');
 
 const getRandom = (arr) =>{
-    let rno = Math.floor(Math.random() * (arr.length - 1))
+    let rno = Math.floor(Math.random() * arr.length);
     return arr[rno]
 }
 
-app.get('/', (req, res) => {
-    res.render('index', { foo: "FOO" });
+app.get('/', async (req, res) => {
+    const employees = await Employee.find();
+    res.render('index', { employees });
 })
 
 app.get('/generate', async (req, res) => {
@@ -35,7 +36,7 @@ app.get('/generate', async (req, res) => {
         })
         console.log(e)
     }
-    res.render('index', { foo: "FOO" });
+    res.redirect("/");
 })
 
 app.listen(port, () => {

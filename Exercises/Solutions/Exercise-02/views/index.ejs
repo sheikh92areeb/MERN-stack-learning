@@ -11,7 +11,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
+        <div class="container">
             <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -51,11 +51,33 @@
             </div>
         </div>
     </nav>
-    <div>
-        <%= data.name %>
+    <div class="container my-3">
+        <table class="table table-bordered table-warning">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Salary</th>
+                    <th>Language</th>
+                    <th>City</th>
+                    <th>Manager</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% employees.forEach(employee => { %>
+                    <tr>
+                        <td><%= employee.name %></td>
+                        <td><%= employee.salary %></td>
+                        <td><%= employee.language %></td>
+                        <td><%= employee.city %></td>
+                        <td><%= employee.isManager ? "Yes" : "No" %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+
     </div>
     <div class="container">
-        <button type="button" class="btn btn-success">Generate Now</button>
+        <button type="button" class="btn btn-success" id="generateBtn">Generate Now</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -63,7 +85,7 @@
         crossorigin="anonymous"></script>
 
     <script>
-        document.querySelector(".container>button").addEventListener("click", async ()=>{
+        document.querySelector("#generateBtn").addEventListener("click", async () => {
             console.log("yes");
             let a = await fetch("/generate");
             let r = await a.json()
