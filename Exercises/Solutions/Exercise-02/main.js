@@ -9,6 +9,11 @@ const port = 3000;
 
 app.set('view engine', 'ejs');
 
+const getRandom = (arr) =>{
+    let rno = Math.floor(Math.random() * (arr.lenght -1))
+    return arr[rno]
+}
+
 app.get('/', (req, res) => {
     res.render('index', { foo: "FOO" });
 })
@@ -20,11 +25,11 @@ app.get('/generate', async (req, res) => {AbortController
     let randomCities = ["Dubai","New York", "London", "Karachi"]
     for (i = 0; i < 10; i++){
         let e = await Employee.create({
-            name:"Areeb",
-            salary:450000,
-            language: "Python",
-            city: "Karachi",
-            isManager: true
+            name: getRandom(randomName),
+            salary: Math.floor(Math.random() * 40000),
+            language: getRandom(randomLang),
+            city: getRandom(randomCities),
+            isManager: (Math.random() > 0)?true:false
         })
         console.log(e)
     }
