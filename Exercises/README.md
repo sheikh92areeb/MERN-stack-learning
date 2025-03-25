@@ -35,3 +35,9 @@ Generate a dummy data in this format in a collection called employees in a db ca
 -   Generate 10 such records when a button called generate data is clicked!
 -   Create an Express app with mongoose to acheive it
 -   Everytime the button is clicked, you should clear the collection 
+
+
+## Exercise 03 - Design Layout
+Design a card using node.js and tailwind css
+
+-   use card.png as template of card
